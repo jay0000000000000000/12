@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include "board.h"
-#include "board.c"
 
 #define MAX_CHARNAME 200
 #define N_PLAYER   3
@@ -111,7 +110,7 @@ int game_end(void)
 		
 		for (i=0;i<N_PLAYER;i++)
 		{
-			if (player_coin[i > max_coin])
+			if (player_coin[i] > max_coin)
 			{
 				max_coin = player_coin[i];
 				winner = i;
@@ -138,7 +137,7 @@ int main(int argc, char *argv[])
 	 //1-2.
 	for(i=0;i<N_PLAYER;i++)
 	{
-		player_position[i];
+		player_position[i] = 0;
 		player_coin [i] =0;
 		player_status[i] = PLAYERSTATUS_LIVE;
 		//player_name
@@ -151,7 +150,7 @@ int main(int argc, char *argv[])
 	//2.반복문(플레이어 턴)
 	do
 	{
-		int step = rolldie();
+		int step;
 		int coinResult;
 		char c;
 		
@@ -178,6 +177,9 @@ int main(int argc, char *argv[])
 		player_position[turn] += step;
 		if (player_position[turn] >= N_BOARD)
 		   player_position[turn] = N_BOARD-1;
+		if (player_position[turn] == N_BOARD-1)
+		   player_status[turn] = PLAYERSTATUS_END;
+		   printf("player %s는 사망했습니다.", player_name[turn]);
 		
 		//2-4.동전 줍기 
 		coinResult = board_getBoardCoin(pos);

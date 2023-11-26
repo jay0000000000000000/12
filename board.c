@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "board.h"
 
-#define N_BOARD         15
 #define N_COINPOS      12
 #define MAX_COIN        4
 
@@ -82,7 +81,7 @@ int board_stepShark(void)
 {
 	int step = rand()%MAX_SHARKSTEP +1;
 	int i;
-	for(i=+1;i<=board_getsharkposition+step;i++)
+	for(i=board_getsharkposition+1;i<=board_getsharkposition+step;i++)
 	{
 		if(i >= 0 && i < N_BOARD)
 		  board_status[i] = BOARDSTATUS_NOK;
