@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "board.h"
+#include "board.c"
 
 #define MAX_CHARNAME 200
 #define N_PLAYER   3
@@ -80,7 +82,7 @@ int game_end(void)
     	
     	for (i=0;i<N_PLAYER;i++)
     	{
-    		if (player_state[i] == PLAYERSTATUS_LIVE)
+    		if (player_status[i] == PLAYERSTATUS_LIVE)
     		{
     			flag_end = 0;
     			break;
