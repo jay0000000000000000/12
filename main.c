@@ -46,7 +46,7 @@ void printPlayerPosition(int player)
 		   printf("%c", player_name[player][0]);
 		else
 		{
-			if(board_getBoardStATUS(i) == BOARDSTATUS_NOK)
+			if(board_getBoardStatus(i) == BOARDSTATUS_NOK)
 			   printf("X");
 			else
 			   printf(" ");
@@ -164,7 +164,7 @@ int main(int argc, char *argv[])
 		//2-1.플레이어의 상태 출력
 		board_printBoardStatus();
 		for(i=0;i<N_PLAYER;i++)
-		    printPlayerposition(i);
+		    printPlayerPosition(i);
 		printPlayerStatus();
 		
 		//2-2.주사 
@@ -190,7 +190,7 @@ int main(int argc, char *argv[])
 		//2-6.상어이동
 		if (turn ==0)
 		{
-			int shark_pos  = board_stepshark();
+			int shark_pos=board_stepShark();
 			checkDie();
 		}
 	}
@@ -206,7 +206,6 @@ int main(int argc, char *argv[])
 	     
     //정리 (승자 계산, 출력 등) 
     
-	game_end();
 	getWinner();
 	getAlivePlayer();
 	
